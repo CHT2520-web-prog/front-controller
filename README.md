@@ -4,7 +4,7 @@ A commonly used design pattern for web applications is the _front controller_ pa
 
 ## Why do this?
 
-Usually whenever a user requests a webpage we perform common tasks such as authentication, and loading other files e.g. model files, validation functions, before executing a specific controller action. It's a good idea to just do this once and have a single place for this code.
+Usually, whenever a user requests a webpage we perform common tasks such as authentication, and loading other files e.g. model files, validation functions, before executing a specific controller action. It's a good idea to just do this once and have a single place for this code. This single location is our front controller. 
 
 ## If you are using Codespaces
 - Open your existing codespace (you shouldn't create a new one) https://github.com/codespaces.
@@ -27,7 +27,7 @@ Now move onto [Completing the practical work](#practical)
 - Move it into the htdocs folder in XAMPP.
 - Change the database settings in _/models/film.php_ to match your database name, username and password.
 - Open _index.php_ in a web browser. Check you can view film details and add a new film. You should find that the *about*, *update* and *delete* pages don't work.
-- 
+  
 Now move onto [Completing the practical work](#practical)
 
 ## Completing the practical work <a name="practical"></a>
