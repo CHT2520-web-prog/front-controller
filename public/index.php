@@ -51,14 +51,6 @@ Possible exercises
 - Session flashing?
 
 */
-//Routing
-//  php -S localhost:8000
-//  foreach ($_SERVER as $key => $value) { 
-//     echo "{$key}: {$value}<br>"; 
-// }
-
-/*
-echo "<h2>Routing</h2>";
 
 $action = "/";
 if (isset($_GET['action'])) {
@@ -67,6 +59,7 @@ if (isset($_GET['action'])) {
 
 //Just for test purposes, so we can see the action.
 // echo "<p>The action is <strong>{$action}</strong></p>";
+
 
 //Test the action value and call a function in controllers/filmController.php
 if ($action === "/") {
@@ -101,68 +94,5 @@ if ($action === "/") {
     http_response_code(404);
     echo "Unknown action";
 }
-*/
 
 
-// Pretty URLs
-// echo "<p>".__DIR__."</p>";
-$method = $_SERVER['REQUEST_METHOD'];
-echo "<p>Method: {$method}</p>";
-$path = $_SERVER['REQUEST_URI'] ?? '/';
-echo "<p>Path: {$path}</p>";
-$parts = explode('/', trim($path));
-// echo "<p>First part: {$explodedPath}</p>";
-// // //parse_url is needed to extract the path
-var_dump($parts);
-echo "Parts:<br>";
-foreach($parts as $part){
-    echo "<p>{$part}</p>";
-}
-
-$resource = $parts[1] ?? null;
-$id       = $parts[2] ?? null;
-$action   = $parts[3] ?? null; 
-
-echo "<p>Resource:{$resource}, ID={$id}, action={$action}</p>";
-if ($resource === 'films' && method="GET" && $id == null && $action === null) {
-    echo "List films";
-}
-else if ($resource === 'films' && $id !== null && $action === null) {
-    echo "Show film ";
-}
-else if ($resource === 'films' && $action === 'edit' && $id !== null) {
-    echo "Edit film ";
-}
-else if ($resource === 'films' && $action === 'update' && $id !== null) {
-    echo "Update film ";
-}
-else if ($resource === 'films' && $action === 'delete' && $id !== null) {
-    echo "Delete film ";
-}
-else {
-    echo "404 – route not found";
-}
-
-
-// $routes = [
-//     '' => 'index',
-//     'show' => 'show',
-//     'create' => 'create',
-//     'edit' => 'edit',
-//     'update' => 'update',
-//     'delete' => 'delete',
-// ];
-
-// if (array_key_exists($parts[0], $routes)) {
-//     $method = $routes[$parts[0]];
-//     if(array_key_exists(1, $parts)){
-//         $filmController->$method($parts[1]);
-//     }
-//     $filmController->$method();
-// } else {
-//     echo "404";
-//     die();
-// }
-
-// $method="index";
-// $filmController->$method();

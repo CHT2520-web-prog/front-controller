@@ -1,44 +1,45 @@
-# Introduction to OOP in PHP
-
-## Part 1: Basic OO Concepts
-First, well get familiarity with the basic idea of inheritance in PHP.
+# A Front Controller
 
 - Open your Codespace
 - Clone this repository into your codespace. 
 - In the terminal enter:
 ```
-git clone https://github.com/CHT2520-web-prog/oop-php-inheritance
+git clone https://github.com/CHT2520-web-prog/front-controller
 ```
-- In terminal, navigate to the _oop-php-inheritance_ folder
+- In terminal, navigate to the _front-controller_ folder
 
 ```
-cd oop-php-inheritance
+cd front-controller
 
 ```
+- The navigate to the _public_ folder
+
+```
+cd public
+```
+
 - Start the web server
 ```
 php -S 0.0.0.0:8000
 ```
 
-The web browser should display a list of films. We'll look at this later.
+The web browser should display the list of films. 
 
-In the web browser put `/inheritance.php` on the end of the URL. 
+You should find that users can also view film details and add new films, but they can't edit or delete films. 
 
-You should get output that looks something like the following:
+Have a look through the code and take some time to understand how the app now uses namespacing to organise files, and uses _index.php_ as a single point of access for the app. 
 
-```
-Jane Smith has built some walls.
-```
+## On Your Own
+Add code in _index.php_ that will get the edit and delete actions to work. 
+You shouldn't need to make any changes to any other files e.g. `FilmController`. You only need to edit _index.php_
 
-* Open _inheritance.php_ in VS Code and answer the questions. 
-* In VS Code open [oop-inheritance-notes](oop-inheritance-notes.md). The notes will help you answer the questions. 
+## Some more things to think about
+There are further changes we could make to this app
 
-## Part 2: Applying OOP
-Now we'll look at an example where we apply OOP in building web applications.
-- In the browser open _index.php_ (or simply remove _/inheritance.php_ from the end of the URL).
-- A list of films should be displayed. 
+- Using 'pretty URLs'. Instead of _index.php?action=show&id=3_, it would be good if we had nicer looking URLs e.g. _films/2_ 
 
-This is a partially complete version of the same CRUD app we worked on earlier week, but it uses inheritance OOP to help structure the code. 
+
+
 
 Have a good look at _index.php_. There are key differences from the example we looked at earlier this week.
 - This page doesn't do any work at all, instead it simply creates some objects (`$filmRepository` and `$filmController`) and calls the `index()` method of the film controller. 
