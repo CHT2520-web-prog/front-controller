@@ -36,39 +36,17 @@ You shouldn't need to make any changes to any other files e.g. `FilmController`.
 ## Some more things to think about
 There are further changes we could make to this app
 
-- Using 'pretty URLs'. Instead of _index.php?action=show&id=3_, it would be good if we had nicer looking URLs e.g. _films/2_ 
+- Using 'pretty URLs'. Instead of _index.php?action=show&id=3_, it would be good if we had nicer looking URLs e.g. _films/2_ .
+  - GET /films = list
+  - GET /films/create = create
+  - POST /films = store
+  - GET /films/2 = show
+  - GET /films/2/edit = edit
+  - POST /films/2/update = update
+  - POST /films/2/delete = delete
 
-
-
-
-Have a good look at _index.php_. There are key differences from the example we looked at earlier this week.
-- This page doesn't do any work at all, instead it simply creates some objects (`$filmRepository` and `$filmController`) and calls the `index()` method of the film controller. 
-- Have a good look at `FilmController`. See how it:
-  - Calls the `all()` method on `$filmRepository` to get the list of films.
-  - Loads the HTML page to display the list of films (`$this->loadView("index", ["films" => $films]);`)
-    - This class inherits from a parent `Controller` class. Have a look inside the parent `BaseController` class to see how the view files are loaded. 
-
-Do the same for the _store.php_, _show.php_ and _edit.php_ pages. See how we are simply calling methods on a `FilmController` object to execute each task. 
-
-### Test your understanding
-- All the CRUD actions should work apart from update and delete. Add code in _update.php_ and _destroy.php_ that will use the `FilmController` instance to update/delete the selected film from the database. 
-- If you can get this to work, one design improvement would be to improve the `FilmRepository` class. At the moment we can argue it is trying to do too much, managing the database connection and running queries.
-- Create a separate `Database` class that creates and stores a PDO connection. 
-- In our code we could then do something like the following where we pass the PDO connection object into `$filmRepository` instead of the `FilmRepository` class having to create its own connection. 
-
-```php
-require 'Database.php';
-require 'Film.php';
-require 'FilmRepository.php';
-require 'BaseController.php';
-require 'FilmController.php';
-
-$database = new Database('db','webdev','student','secret');
-$conn = $database->getConnection();
-$filmRepository = new FilmRepository($conn);
-$filmController = new FilmController($filmRepository);
-$filmController->index();
-```
-
-
+- These URLs use REST conventions.
+    - Plural nouns for collections (_/films_)
+    - Singular item identified by ID (_/films/42_)
+    - HTTP method (GET = read data, POST = make changes)
 
