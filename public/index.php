@@ -7,9 +7,9 @@ spl_autoload_register(function ($class_name) {
     require($class_name.'.php');
 });
 
-use app\Models\FilmRepository;
-use app\Database;
-use app\Controllers\FilmController;
+use App\Models\FilmRepository;
+use App\Database;
+use App\Controllers\FilmController;
 $config = require("../config.php");
 
 // Get the database 
@@ -57,6 +57,7 @@ Possible exercises
 //     echo "{$key}: {$value}<br>"; 
 // }
 
+/*
 echo "<h2>Routing</h2>";
 
 $action = "/";
@@ -100,51 +101,47 @@ if ($action === "/") {
     http_response_code(404);
     echo "Unknown action";
 }
+*/
 
 
 // Pretty URLs
 // echo "<p>".__DIR__."</p>";
-// $method = $_SERVER['REQUEST_METHOD'];
-// echo "<p>Method: {$method}</p>";
-// $path = $_SERVER['REQUEST_URI'] ?? '/';
-// echo "<p>Path: {$path}</p>";
-// $explodedPath = explode('?', $path);
-// // echo "<p>First part: {$explodedPath}</p>";
+$method = $_SERVER['REQUEST_METHOD'];
+echo "<p>Method: {$method}</p>";
+$path = $_SERVER['REQUEST_URI'] ?? '/';
+echo "<p>Path: {$path}</p>";
+$parts = explode('/', trim($path));
+// echo "<p>First part: {$explodedPath}</p>";
 // // //parse_url is needed to extract the path
+var_dump($parts);
+echo "Parts:<br>";
+foreach($parts as $part){
+    echo "<p>{$part}</p>";
+}
 
-// foreach($explodedPath as $exp){
-//     echo "<p>{$exp}</p>";
-// }
-// $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-// echo "<p>The path is {$path}</p>";
+$resource = $parts[1] ?? null;
+$id       = $parts[2] ?? null;
+$action   = $parts[3] ?? null; 
 
-// $parts = explode("/",trim($path, '/'));
-// echo "<p>parts[0] is {$parts[0]}</p>";
-// echo "<p>parts[1] is {$parts[1]}</p>";
-// // echo $uri;
-// foreach($parts as $part){
-//     echo "{$part} <br>";
-// }
-
-
-// if($parts[0]===""){
-//     $filmController->index();
-//     // echo "Home";
-// } else if($parts[0]==="show" && isset($parts[1])){
-//     // $id = $parts[1];
-//     $filmController->show($parts[1]);
-//     // echo "Show";
-// } else if($parts[0]==="create"){
-//     // $filmController->create();
-// }else if($parts[0]==="store"){
-//     // $filmController->store();
-// }else if($parts[0]==="edit"){
-//     // $filmController->edit();
-// }else if($parts[0]==="update"){
-//     $filmController->update();
-// }else{
-//     echo "404";
-// }
+echo "<p>Resource:{$resource}, ID={$id}, action={$action}</p>";
+if ($resource === 'films' && method="GET" && $id == null && $action === null) {
+    echo "List films";
+}
+else if ($resource === 'films' && $id !== null && $action === null) {
+    echo "Show film ";
+}
+else if ($resource === 'films' && $action === 'edit' && $id !== null) {
+    echo "Edit film ";
+}
+else if ($resource === 'films' && $action === 'update' && $id !== null) {
+    echo "Update film ";
+}
+else if ($resource === 'films' && $action === 'delete' && $id !== null) {
+    echo "Delete film ";
+}
+else {
+    echo "404 – route not found";
+}
 
 
 // $routes = [
