@@ -1,7 +1,7 @@
 <?php
 $config = [
     'database'=>[
-        'host' => 'localhost',
+        'host' => 'db',
         'dbname' => 'webdev',
         'username' => 'student',
         'password' => 'secret',
