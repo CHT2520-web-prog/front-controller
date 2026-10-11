@@ -21,10 +21,8 @@ class FilmController extends BaseController
 	{
 		$this->loadView("create");
 	}
-	function show():void
+	function show(int $id):void
 	{
-		//Get the id from the query string e.g. for show.php?id=2, $_GET['id'] has a value of 2
-		$id = (int) $_GET['id'];
 		//Get the film from the film repository
 		$film = $this->filmRepository->find($id);
 		$this->loadView("show", ["film" => $film]);
@@ -39,12 +37,10 @@ class FilmController extends BaseController
 		//Ask the repository to save the new film
 		$this->filmRepository->save($film );
 		//Redirect the user to the home page
-		header('Location: index.php');
+		header('Location: /films');
 	}
-	function edit():void
+	function edit(int $id):void
 	{
-		//Get the id from the query string e.g. for show.php?id=2, $_GET['id'] has a value of 2
-		$id = (int) $_GET['id'];
 		//Get the film from the film repository
 		$film = $this->filmRepository->find($id);
 		$this->loadView("edit", ["film" => $film]);
@@ -60,7 +56,7 @@ class FilmController extends BaseController
 		//Ask the repository to save the new film
 		$this->filmRepository->update($film );
 		//Redirect the user to the home page
-		header('Location: index.php');
+		header('Location: /films');
 	}
 
 	function destroy():void
@@ -68,7 +64,7 @@ class FilmController extends BaseController
 		$id = $_POST['id'];
 		$this->filmRepository->delete($id);
 		//Redirect the user to the home page
-		header('Location: index.php');
+		header('Location: /films');
 	}
 
 	function about()

@@ -10,7 +10,7 @@ echo "<h1>Here's a list of films</h1>";
 foreach ($films as $film) {
     echo "<p>";
     // Construct a link to the show.php page e.g. <a href="show.php?id=2">Winter's Bone</a>
-    echo "<a href='index.php?action=show&id={$film->id}'>";
+    echo "<a href='/films/{$film->id}'>";
     // Display the film's title
     echo $film->title;
     echo "</a>";

@@ -9,11 +9,11 @@ if($film){
 
 
     // Link to the edit page, passing the film's id in the query string e.g. edit.php?id=3
-    echo "<a href='index.php?action=edit&id={$film->id}'><button>Edit</button></a> ";
+    echo "<a href='/films/{$film->id}/edit'><button>Edit</button></a> ";
     ?>
 
     <!-- For delete we need to use a POST action -->
-    <form method='POST' action='index.php?action=destroy'>
+    <form method='POST' action='<?php echo "/films/{$film->id}/destroy";?>'>
         <!-- 
     A hidden field (not visible to the user) inspect the page or view source in the HTML page to see it. 
     The field contains the id number of the film.

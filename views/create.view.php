@@ -4,7 +4,7 @@ require '../views/partials/header.php';
 ?>
 <h1>Add a new film</h1>
 
-<form method="POST" action="index.php?action=store">
+<form method="POST" action="/films/store">
     <div>
         <label for="title">Title:</label>
         <input type="text" id="title" name="title">

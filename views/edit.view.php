@@ -3,7 +3,7 @@ $pageTitle = "Show details for a film";
 require '../views/partials/header.php';
 
 echo "<h1>Edit the details for {$film->title}</h1>"; ?>
-<form action="index.php?action=update" method="POST">
+<form action='<?php echo "/films/{$film->id}/update";?>' method="POST">
     <!-- 
 	A hidden field (not visible to the user) inspect the page or view source in the HTML page to see it. 
 	The field contains the id number of the film.

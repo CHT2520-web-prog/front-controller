@@ -105,64 +105,58 @@ if ($action === "/") {
 
 
 // Pretty URLs
-// echo "<p>".__DIR__."</p>";
-$method = $_SERVER['REQUEST_METHOD'];
-echo "<p>Method: {$method}</p>";
-$path = $_SERVER['REQUEST_URI'] ?? '/';
-echo "<p>Path: {$path}</p>";
-$parts = explode('/', trim($path));
-// echo "<p>First part: {$explodedPath}</p>";
-// // //parse_url is needed to extract the path
-var_dump($parts);
-echo "Parts:<br>";
-foreach($parts as $part){
-    echo "<p>{$part}</p>";
-}
 
-$resource = $parts[1] ?? null;
-$id       = $parts[2] ?? null;
-$action   = $parts[3] ?? null; 
+// $method = $_SERVER['REQUEST_METHOD'];
+// echo "<p>Method: {$method}</p>";
+// $path = $_SERVER['REQUEST_URI'] ?? '/';
+// echo "<p>Path: {$path}</p>";
+// $parts = explode('/', trim($path));
 
-echo "<p>Resource:{$resource}, ID={$id}, action={$action}</p>";
-if ($resource === 'films' && method="GET" && $id == null && $action === null) {
-    echo "List films";
-}
-else if ($resource === 'films' && $id !== null && $action === null) {
-    echo "Show film ";
-}
-else if ($resource === 'films' && $action === 'edit' && $id !== null) {
-    echo "Edit film ";
-}
-else if ($resource === 'films' && $action === 'update' && $id !== null) {
-    echo "Update film ";
-}
-else if ($resource === 'films' && $action === 'delete' && $id !== null) {
-    echo "Delete film ";
-}
-else {
-    echo "404 – route not found";
-}
-
-
-// $routes = [
-//     '' => 'index',
-//     'show' => 'show',
-//     'create' => 'create',
-//     'edit' => 'edit',
-//     'update' => 'update',
-//     'delete' => 'delete',
-// ];
-
-// if (array_key_exists($parts[0], $routes)) {
-//     $method = $routes[$parts[0]];
-//     if(array_key_exists(1, $parts)){
-//         $filmController->$method($parts[1]);
-//     }
-//     $filmController->$method();
-// } else {
-//     echo "404";
-//     die();
+// var_dump($parts);
+// echo "Parts:<br>";
+// foreach($parts as $part){
+//     echo "<p>{$part}</p>";
 // }
 
-// $method="index";
-// $filmController->$method();
+$path = trim($_SERVER['REQUEST_URI'], '/');
+$parts = explode('/', $path);
+
+$resource = $parts[0] ?? null;
+$first    = $parts[1] ?? null;
+$second   = $parts[2] ?? null;
+
+$method = $_SERVER['REQUEST_METHOD'];
+
+// LIST
+if ($resource === 'films' && $method === 'GET' && $first === null) {
+    $filmController->index();
+}
+// CREATE (no ID)
+else if ($resource === 'films' && $method === 'GET' && $first === 'create') {
+    $filmController->create();
+}
+// STORE (no ID)
+else if ($resource === 'films' && $method === 'POST' && $first === 'store') {
+    $filmController->store();
+}
+// SHOW
+else if ($resource === 'films' && $method === 'GET' && is_numeric($first) && $second === null) {
+
+    $filmController->show($first);
+}
+// EDIT
+else if ($resource === 'films' && $method === 'GET' && is_numeric($first) && $second === 'edit') {
+    $filmController->edit($first);
+}
+// UPDATE
+else if ($resource === 'films' && $method === 'POST' && is_numeric($first) && $second === 'update') {
+    $filmController->update();
+}
+// DELETE
+else if ($resource === 'films' && $method === 'POST' && is_numeric($first) && $second === 'destroy') {
+    $filmController->destroy();
+}
+
+else {
+    echo "404 route not found";
+}
