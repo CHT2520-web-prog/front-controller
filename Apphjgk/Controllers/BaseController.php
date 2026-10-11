@@ -4,7 +4,7 @@ namespace App\Controllers;
 abstract class BaseController
 {
 
-	protected function loadView($view, $data = []):void
+	protected function loadView(string $view, $data = []):void
 	{
 		//The extract() function creates a variable for each key in an array e.g. 
 		//$arr=["msg"=>"hello","active"=>true];
