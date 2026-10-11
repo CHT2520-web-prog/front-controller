@@ -32,22 +32,20 @@ Have a look through the code and take some time to understand how the app now us
 Add code in _index.php_ that will get the edit and delete actions to work. 
 You shouldn't need to make any changes to any other files e.g. `FilmController`. You only need to edit _index.php_
 
-## Some more things to think about
-There are further changes we could make to this app
-
-- Using 'pretty URLs'. Instead of _index.php?action=show&id=2_, it would be good if we had nicer looking URLs e.g. _films/2_ .
-  - GET _/films_ = list
-  - GET _/films/create_ = create
-  - POST _/films_ = store
-  - GET _/films/2_ = show
-  - GET _/films/2/edit_ = edit
-  - POST _/films/2/update_ = update
-  - POST _/films/2/delete_ = delete
+## Pretty URLs
+It would be good if we had nicer looking URLs e.g. _films/2_ instead of _index.php?action=show&id=2_.
+- GET _/films_ = list
+- GET _/films/create_ = create
+- POST _/films_ = store
+- GET _/films/2_ = show
+- GET _/films/2/edit_ = edit
+- POST _/films/2/update_ = update
+- POST _/films/2/delete_ = delete
 
 - These URLs use REST conventions.
-    - Plural nouns for collections (_/films_)
-    - Singular item identified by ID (_/films/42_)
-    - HTTP method (GET = read data, POST = make changes)
+  - Plural nouns for collections (_/films_)
+  - Singular item identified by ID (_/films/42_)
+  - HTTP method (GET = read data, POST = make changes)
 
 Here's some code we could use in _index.php_ to start parsing URLs in this format.
 ```php
