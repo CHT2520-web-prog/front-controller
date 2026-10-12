@@ -24,7 +24,7 @@ $filmRepository = new FilmRepository($conn);
 $filmController = new FilmController($filmRepository);
 
 
-$path = trim($_SERVER['REQUEST_URI'], '/'); // Need to tirm to get rid of the leading slash
+$path = trim($_SERVER['REQUEST_URI'], '/'); // Need to trim to get rid of the leading slash
 $parts = explode('/', $path);
 
 $resource = $parts[0] ?? null;
